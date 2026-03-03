@@ -120,6 +120,21 @@ return {
       end,
     })
 
+    -- -- Organise imports using Ruff when writing Python files
+    -- vim.api.nvim_create_autocmd('BufWritePre', {
+    --   callback = function()
+    --     if vim.bo.ft == 'python' then
+    --       vim.lsp.buf.code_action {
+    --         context = {
+    --           only = { 'source.organizeImports' },
+    --           diagnostics = {},
+    --         },
+    --         apply = true,
+    --       }
+    --     end
+    --   end,
+    -- })
+    --
     -- Diagnostic Config
     -- See :help vim.diagnostic.Opts
     vim.diagnostic.config {
@@ -169,8 +184,6 @@ return {
       bashls = {
         filetypes = { 'bash', 'sh', 'zsh' },
       },
-      pyright = {},
-      ruff = {},
 
       lua_ls = {
         settings = {
@@ -178,9 +191,35 @@ return {
             completion = {
               callSnippet = 'Replace',
             },
+            workspace = {
+              checkThirdParty = true,
+              library = {
+                vim.env.VIMRUNTIME,
+                '~/.local/share/nvim/lazy/dracula.nvim',
+              },
+            },
           },
         },
       },
+
+      prettier = {},
+
+      pyright = {
+        settings = {
+          disableOrganizeImports = true,
+          python = {
+            analysis = {
+              ignore = '*',
+            },
+          },
+        },
+      },
+
+      ruff = {},
+
+      ts_ls = {},
+
+      yamlls = {},
     }
 
     local ensure_installed = vim.tbl_keys(servers or {})
