@@ -5,6 +5,8 @@
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+vim.keymap.set('n', '<leader>w', '<cmd>write<CR>', { desc = 'Write file' })
+
 vim.keymap.set('n', 'gh', 'viWK', { desc = 'Get help for word' })
 
 -- Diagnostic keymaps
