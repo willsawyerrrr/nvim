@@ -3,6 +3,9 @@ return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
   main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+  dependencies = {
+    { 'nvim-treesitter/nvim-treesitter-textobjects' },
+  },
   -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
   opts = {
     ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
@@ -16,6 +19,23 @@ return {
       additional_vim_regex_highlighting = { 'ruby' },
     },
     indent = { enable = true, disable = { 'ruby' } },
+    textobjects = {
+      lsp_interop = {
+        enable = true,
+        peek_definition_code = {
+          ['<leader>df'] = '@function.outer',
+        },
+      },
+      select = {
+        enable = true,
+        keymaps = {
+          ['ac'] = '@class.outer',
+          ['ic'] = '@class.inner',
+          ['af'] = '@function.outer',
+          ['if'] = '@function.inner',
+        },
+      },
+    },
   },
   -- There are additional nvim-treesitter modules that you can use to interact
   -- with nvim-treesitter. You should go explore a few and see what interests you:
