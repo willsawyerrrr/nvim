@@ -13,4 +13,13 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
-require('lazy').setup("plugins")
+require('lazy').setup {
+  spec = { import = 'plugins' },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        'netrwPlugin',
+      },
+    },
+  },
+}

@@ -1,3 +1,8 @@
+-- Make netrw show line numbers and relative line numbers
+-- These options come from the default value,
+-- replacing 'nonu' with 'nu' and 'nornu' with 'rnu'
+vim.g.netrw_bufsettings = 'noma nomod nu nobl nowrap ro rnu'
+
 vim.o.breakindent = true
 vim.o.clipboard = 'unnamedplus'
 vim.o.confirm = true
