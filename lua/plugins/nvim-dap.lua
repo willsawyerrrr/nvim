@@ -4,10 +4,11 @@ return {
     'rcarriga/nvim-dap-ui',
     'theHamsta/nvim-dap-virtual-text',
     'nvim-neotest/nvim-nio',
-    'williamboman/mason.nvim',
+    'mason-org/mason.nvim',
   },
   config = function()
     local dap = require 'dap'
+    local dapui = require 'dapui'
 
     dap.adapters.debugpy = {
       type = 'executable',
@@ -17,22 +18,9 @@ return {
     dap.adapters.python = dap.adapters.debugpy
 
     vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint)
-
-    local dapui = require 'dapui'
-    dapui.setup()
-
-    dap.listeners.before.attach.dapui_config = function()
-      dapui.open()
-    end
-    dap.listeners.before.launch.dapui_config = function()
-      dapui.open()
-    end
-    dap.listeners.before.event_terminated.dapui_config = function()
-      dapui.close()
-    end
-    dap.listeners.before.event_exited.dapui_config = function()
-      dapui.close()
-    end
+    vim.keymap.set('n', '<leader>b', function()
+      dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+    end)
 
     -- TODO: Figure out DAP keymaps to not pollute
     -- vim.keymap.set('n', '<F>', dap.continue)
@@ -41,5 +29,32 @@ return {
     -- vim.keymap.set('n', '<F>', dap.step_out)
     -- vim.keymap.set('n', '<F>', dap.step_back)
     -- vim.keymap.set('n', '<F>', dap.restart)
+
+    dapui.setup {
+      icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
+      controls = {
+        icons = {
+          pause = '⏸',
+          play = '▶',
+          step_into = '⏎',
+          step_over = '⏭',
+          step_out = '⏮',
+          step_back = 'b',
+          run_last = '▶▶',
+          terminate = '⏹',
+          disconnect = '⏏',
+        },
+      },
+    }
+
+    dap.listeners.after.event_initialized.dapui_config = dapui.open
+    dap.listeners.before.attach.dapui_config = dapui.open
+    dap.listeners.before.launch.dapui_config = dapui.open
+    dap.listeners.before.event_terminated.dapui_config = dapui.close
+    dap.listeners.before.event_exited.dapui_config = dapui.close
+
+    -- Toggle to see last session result.
+    -- Without this, you can't see session output in case of unhandled exception.
+    vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
   end,
 }
