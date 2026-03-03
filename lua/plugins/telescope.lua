@@ -32,11 +32,27 @@ return {
     -- See `:help telescope` and `:help telescope.setup()`
     require('telescope').setup {
       extensions = {
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = 'smart_case',
+        },
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
         },
       },
-      pickers = {},
+      pickers = {
+        colorscheme = {
+          enable_preview = true,
+        },
+        find_files = {
+          find_command = { 'rg', '--files', '--hidden', '--glob', '!**/.git/*' },
+        },
+        live_grep = {
+          search_dirs = { '.', '!.git', '.github' },
+        },
+      },
     }
 
     require('telescope').load_extension 'fzf'
@@ -51,6 +67,7 @@ return {
     vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
     vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
     vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
+    vim.keymap.set('n', '<leader>sq', builtin.quickfix, { desc = '[S]earch [Q]uickfix' })
     vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
     vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
     vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
