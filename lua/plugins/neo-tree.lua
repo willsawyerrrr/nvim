@@ -32,6 +32,16 @@ return {
       follow_cursor = true,
     },
 
+    event_handlers = {
+      {
+        event = 'neo_tree_buffer_enter',
+        handler = function()
+          vim.opt_local.number = true -- Optional: ensure absolute numbers are also shown
+          vim.opt_local.relativenumber = true
+        end,
+      },
+    },
+
     filesystem = {
       filtered_items = {
         hide_dotfiles = false,
