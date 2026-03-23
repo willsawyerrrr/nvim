@@ -3,6 +3,7 @@
 -- replacing 'nonu' with 'nu' and 'nornu' with 'rnu'
 vim.g.netrw_bufsettings = 'noma nomod nu nobl nowrap ro rnu'
 
+vim.o.autoread = true
 vim.o.breakindent = true
 vim.o.clipboard = 'unnamedplus'
 vim.o.confirm = true
