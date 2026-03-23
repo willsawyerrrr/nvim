@@ -120,21 +120,21 @@ return {
       end,
     })
 
-    -- -- Organise imports using Ruff when writing Python files
-    -- vim.api.nvim_create_autocmd('BufWritePre', {
-    --   callback = function()
-    --     if vim.bo.ft == 'python' then
-    --       vim.lsp.buf.code_action {
-    --         context = {
-    --           only = { 'source.organizeImports' },
-    --           diagnostics = {},
-    --         },
-    --         apply = true,
-    --       }
-    --     end
-    --   end,
-    -- })
-    --
+    -- Organise imports using Ruff when writing Python files
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      callback = function()
+        if vim.bo.ft == 'python' then
+          vim.lsp.buf.code_action {
+            context = {
+              only = { 'source.organizeImports' },
+              diagnostics = {},
+            },
+            apply = true,
+          }
+        end
+      end,
+    })
+
     -- Diagnostic Config
     -- See :help vim.diagnostic.Opts
     vim.diagnostic.config {
