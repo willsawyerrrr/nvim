@@ -121,7 +121,7 @@ return {
     })
 
     -- Organise imports using Ruff when writing Python files
-    vim.api.nvim_create_autocmd('BufWritePre', {
+    vim.api.nvim_create_autocmd('BufWritePost', {
       callback = function()
         if vim.bo.ft == 'python' then
           vim.lsp.buf.code_action {
