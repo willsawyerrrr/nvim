@@ -4,7 +4,7 @@ return {
   'saghen/blink.pairs',
   version = '*',
 
-  dependencies = 'saghen/blink.download',
+  dependencies = 'saghen/blink.lib',
 
   opts = {},
 }
