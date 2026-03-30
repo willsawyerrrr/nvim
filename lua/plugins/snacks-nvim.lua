@@ -5,5 +5,6 @@ return {
   ---@type snacks.Config
   opts = {
     image = { enable = true },
+    scroll = {},
   },
 }
