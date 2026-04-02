@@ -9,6 +9,16 @@ vim.keymap.set('n', '<leader>w', '<cmd>write<CR>', { desc = 'Write file' })
 
 vim.keymap.set('n', 'gh', 'viWK', { desc = 'Get help for word' })
 
+vim.keymap.set('n', 'gG', function()
+  local word = vim.fn.expand '<cWORD>'
+  local repo = word:match '[%w%-%.]+/[%w%-%.]+'
+  if not repo then
+    vim.notify('No GitHub repo found under cursor', vim.log.levels.WARN)
+    return
+  end
+  vim.ui.open('https://github.com/' .. repo)
+end, { desc = 'Open GitHub repo under cursor' })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
