@@ -5,7 +5,7 @@ return {
   ---@module "snacks"
   ---@type snacks.Config
   opts = {
-    image = { enable = true },
+    image = { enabled = true },
     scroll = {},
   },
 }
