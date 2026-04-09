@@ -3,7 +3,10 @@
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set('n', '<Esc>', function()
+  vim.cmd 'nohlsearch'
+  vim.cmd 'NoiceDismiss'
+end)
 
 vim.keymap.set('n', '<leader>w', '<cmd>write<CR>', { desc = 'Write file' })
 
