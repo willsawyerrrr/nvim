@@ -149,7 +149,7 @@ return {
         source = 'if_many',
         spacing = 2,
         format = function(diagnostic)
-          return diagnostic.message
+          return diagnostic.message .. ' [' .. diagnostic.code .. ']'
         end,
       },
     }
