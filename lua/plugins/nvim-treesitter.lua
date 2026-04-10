@@ -30,18 +30,28 @@ return {
   init = function()
     local ensure_installed = {
       'bash',
-      'c',
       'diff',
+      'dockerfile',
+      'git_config',
       'html',
+      'javascript',
+      'jq',
+      'json',
+      'jsx',
+      'kitty',
       'lua',
       'luadoc',
       'markdown',
       'markdown_inline',
       'python',
       'query',
+      'terraform',
+      'toml',
+      'typescript',
       'vim',
       'vimdoc',
       'yaml',
+      'zsh',
     }
     local already_installed = require('nvim-treesitter.config').get_installed()
     local parsers_to_install = vim
