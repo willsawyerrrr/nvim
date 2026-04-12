@@ -40,4 +40,13 @@ return {
     },
     scroll = {},
   },
+  keys = {
+    {
+      'gb',
+      function()
+        Snacks.gitbrowse()
+      end,
+      desc = 'GitBrowse',
+    },
+  },
 }

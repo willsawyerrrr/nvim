@@ -6,6 +6,7 @@
 vim.keymap.set('n', '<Esc>', function()
   vim.cmd 'nohlsearch'
   vim.cmd 'NoiceDismiss'
+  Snacks.notifier.hide()
 end)
 
 vim.keymap.set('n', '<leader>w', '<cmd>write<CR>', { desc = 'Write file' })
@@ -37,7 +38,6 @@ vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-
 
 -- TODO: How can I make opening delimeters wrap a selection?
 -- vim.keymap.set('v', '(', 'sa(')

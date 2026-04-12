@@ -149,6 +149,9 @@ return {
         source = 'if_many',
         spacing = 2,
         format = function(diagnostic)
+          if not diagnostic.code then
+            return diagnostic.message
+          end
           return diagnostic.message .. ' [' .. diagnostic.code .. ']'
         end,
       },
